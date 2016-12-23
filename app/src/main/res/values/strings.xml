@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Zorkif ONE</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (Required)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_empty_password">Password Empty</string>
+    <string name="error_invalid_companyid">Invalid  Password</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="hcompanyID"><font size="25">Enter Company ID</font></string>
+    <string-array name="spn_langList">
+        <item>Select Language</item>
+        <item>English</item>
+        <item>Arabic</item>
+        <item>Urdu</item>
+
+    </string-array>
+    <string name="title_activity_dash">YourCompanyDashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+</resources>
