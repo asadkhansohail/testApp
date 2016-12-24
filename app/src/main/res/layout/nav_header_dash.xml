@@ -7,29 +7,30 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="114dp"
+        android:layout_height="60dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/zorkif_dashimg" />
+        app:srcCompat="@drawable/dash_resized" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Zorkif One ERP"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingLeft="20dp" />
 
     <TextView
         android:id="@+id/txtnavemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="userEmail@zorkifone.com" />
+        android:text="userEmail@zorkifone.com"
+        android:paddingLeft="20dp"
+        android:paddingBottom="5dp" />
 
 </LinearLayout>
