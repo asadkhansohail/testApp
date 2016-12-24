@@ -46,6 +46,11 @@ public class DashActivity extends AppCompatActivity
 
         String dashtitle = user.get("company_name").toString();
         Log.i("asad here",dashtitle);
+        Log.i("asad here",dashtitle);
+        Log.i("asad here",dashtitle);
+        Log.i("asad here",dashtitle);
+        Log.i("asad here",dashtitle);
+        Log.i("asad here",dashtitle);
 
 
 
