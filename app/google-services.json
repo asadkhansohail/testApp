@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "393488955649",
+    "firebase_url": "https://zorkifone.firebaseio.com",
+    "project_id": "zorkifone",
+    "storage_bucket": "zorkifone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393488955649:android:a11e88dc7a5904f4",
+        "android_client_info": {
+          "package_name": "com.example.silenthunter.mylogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393488955649-p2r8brsicc54hjsi5pgsq58ge4bup5t7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.silenthunter.mylogin",
+            "certificate_hash": "C49FFEFAB6D00A04B22E86835054DFB1175B5EF8"
+          }
+        },
+        {
+          "client_id": "393488955649-gijjnmhns02pbsgh83mcbi1bpjk18ul2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuXBDydqLZfYtp6mT7YoquvqZLKT0cTT4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393488955649-gijjnmhns02pbsgh83mcbi1bpjk18ul2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
