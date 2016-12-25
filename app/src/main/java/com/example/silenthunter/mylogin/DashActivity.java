@@ -17,13 +17,15 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.example.silenthunter.mylogin.LoginActivity;
 import java.util.HashMap;
 
 public class DashActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private SQLiteHandler db;
     private SessionManager session;
-
+    private FirebaseAuth mAuthD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -109,6 +111,7 @@ public class DashActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.btn_logout) {
             logoutUser();
+            FirebaseAuth.getInstance().signOut();
             return true;
         }
 
@@ -148,7 +151,7 @@ public class DashActivity extends AppCompatActivity
         session.setLogin(false);
 
         db.deleteUsers();
-
+         FirebaseAuth.getInstance().signOut();
         // Launching the login activity
         Intent intent = new Intent(DashActivity.this, LoginActivity.class);
         startActivity(intent);

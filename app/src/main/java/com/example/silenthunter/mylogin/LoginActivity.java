@@ -734,7 +734,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // [END sign_in_with_email]
     }
 
-    private void signOut() {
+    public void signOut() {
         mAuth.signOut();
         updateUI(null);
     }
@@ -762,6 +762,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void updateUI(FirebaseUser user) {
+
 //        hideProgressDialog();
         if (user != null) {
 //            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
@@ -795,6 +796,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //    }
     //firebase funcitons ends
 
+public FirebaseAuth getmAuth(){
+
+
+    return mAuth;
+}
 
 }
 
