@@ -716,13 +716,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
-                        attemptLogin();
+//                        attemptLogin();
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
-                            Toast.makeText(LoginActivity.this, "auth failed asad",
+                            Toast.makeText(LoginActivity.this, "Authencation Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
-
+                        if (task.isSuccessful()) {
+                            attemptLogin();
+                        }
                         // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
 //                            mStatusTextView.setText(R.string.auth_failed);
