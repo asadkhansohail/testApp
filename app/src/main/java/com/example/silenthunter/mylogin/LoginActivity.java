@@ -613,6 +613,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
     }
 
     private void showDialog() {
