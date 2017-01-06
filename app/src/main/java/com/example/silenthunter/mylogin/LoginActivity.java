@@ -161,8 +161,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 Log.i("info","im here");
-                signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-//                attemptLogin();
+              //  signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+   attemptLogin();
             }
         });
        //tutu code starts
@@ -716,15 +716,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
-//                        attemptLogin();
+                        attemptLogin();
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authencation Failed",
+                            Toast.makeText(LoginActivity.this, "auth failed asad",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        if (task.isSuccessful()) {
-                            attemptLogin();
-                        }
+
                         // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
 //                            mStatusTextView.setText(R.string.auth_failed);
