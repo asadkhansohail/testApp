@@ -6,7 +6,7 @@ package com.example.silenthunter.mylogin;
 
 public class AppConfig {
     // Server user login url
-    public static String URL_LOGIN = "http://asadsohail.cloudmsm.com/api/login.php";
+    public static String URL_LOGIN = "http://demo.one.zorkif.com/index.php/api/zk1_api_service";
 
     // Server user register url
     public static String URL_REGISTER = "http://asadsohail.cloudmsm.com/api/register.php";

@@ -36,9 +36,7 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -89,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mUsername;
     private EditText mPasswordView;
     private EditText mCompanyidView;
     private View mProgressView;
@@ -103,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 //    private TextView mStatusTextView;
 //    private TextView mDetailTextView;
-    private EditText mEmailField;
+    private EditText mUsernameField;
     private EditText mPasswordField;
 
     // [START declare_auth]
@@ -131,7 +129,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Set up the login form.
         mCompanyidView = (EditText) findViewById(R.id.companyid);
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mUsername = (AutoCompleteTextView) findViewById(R.id.username);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -161,7 +159,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 Log.i("info","im here");
-              //  signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+              //  signIn(mUsernameField.getText().toString(), mPasswordField.getText().toString());
    attemptLogin();
             }
         });
@@ -195,7 +193,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Views
 //        mStatusTextView = (TextView) findViewById(R.id.status);
 //        mDetailTextView = (TextView) findViewById(R.id.detail);
-        mEmailField = (EditText) findViewById(R.id.email);
+        mUsernameField = (EditText) findViewById(R.id.username);
         mPasswordField = (EditText) findViewById(R.id.password);
 
         // Buttons
@@ -220,7 +218,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
                 // [START_EXCLUDE]
-                updateUI(user);
+
                 // [END_EXCLUDE]
             }
         };
@@ -247,7 +245,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(mUsername, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
@@ -293,11 +291,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUsername.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String name = mUsername.getText().toString();
         String password = mPasswordView.getText().toString();
         String companyid = mCompanyidView.getText().toString();
 
@@ -320,21 +318,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 // Check for a valid Company ID, if the user entered one.
         if (TextUtils.isEmpty(companyid)) {
-            mCompanyidView.setError(getString(R.string.error_invalid_companyid));
-            focusView = mCompanyidView;
-            cancel = true;
+//            mCompanyidView.setError(getString(R.string.error_invalid_companyid));
+//            focusView = mCompanyidView;
+//            cancel = true;
         }
 
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+        if (TextUtils.isEmpty(name)) {
+            mUsername.setError(getString(R.string.error_field_required));
+            focusView = mUsername;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
+        } else if (!isEmailValid(name)) {
+//            mUsername.setError(getString(R.string.error_invalid_email));
+//            focusView = mUsername;
+//            cancel = true;
         }
 
         if (cancel) {
@@ -345,7 +343,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password,companyid);
+            mAuthTask = new UserLoginTask(name, password,companyid);
             mAuthTask.execute((Void) null);
         }
     }
@@ -436,46 +434,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        mUsername.setAdapter(adapter);
     }
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
 //     */
-//    public Action getIndexApiAction() {
-//        Thing object = new Thing.Builder()
-//                .setName("Login Page") // TODO: Define a title for the content shown.
-//                // TODO: Make sure this auto-generated URL is correct.
-//                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-//                .build();
-//        return new Action.Builder(Action.TYPE_VIEW)
-//                .setObject(object)
-//                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-//                .build();
-//    }
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//
-//        // ATTENTION: This was auto-generated to implement the App Indexing API.
-//        // See https://g.co/AppIndexing/AndroidStudio for more information.
-//        client.connect();
-//        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//
-//        // ATTENTION: This was auto-generated to implement the App Indexing API.
-//        // See https://g.co/AppIndexing/AndroidStudio for more information.
-//        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-//        client.disconnect();
-//    }
-//
-//
+
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -492,12 +458,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUser;
         private final String mPassword;
         private final String mCompanyid;
 
-        UserLoginTask(String email, String password, String companyid) {
-            mEmail = email;
+        UserLoginTask(String user, String password, String companyid) {
+            mUser = user;
             mPassword = password;
             mCompanyid=companyid;
 
@@ -526,7 +492,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                checkLogin(mEmail, mPassword,mCompanyid);
+                checkLogin(mUser, mPassword,mCompanyid);
 //                Intent myIntent = new Intent(LoginActivity.this, DashActivity.class);
 //                LoginActivity.this.finish();
 //                LoginActivity.this.startActivity(myIntent);
@@ -551,7 +517,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Tutu function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password, final String companyid) {
+    private void checkLogin(final String username, final String password, final String companyid) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -570,26 +536,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     JSONObject jObj = new JSONObject(response);
 //                    jObj=response.getJSONObject("error");
                     Log.d(TAG, "Login Second Response: " + response.toString());
-                    boolean error = jObj.getBoolean("error");
-
+                    boolean error = jObj.getBoolean("ErrorStatus");
+                    String errorCode = jObj.getString("StatusCode");
                     // Check for error node in json
-                    if (!error) {
+                    Log.d(TAG, errorCode);
+                    Log.d(TAG, jObj.getString("StatusMessage"));
+//                    Log.d(TAG, errorCode);
+                    if (errorCode.equalsIgnoreCase("0x3200") ) {
                         // user successfully logged in
                         // Create login session
                         session.setLogin(true);
-
+                        Log.d(TAG, "coming inside ");
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
+                        String stscode = jObj.getString("StatusCode");
+                        String stsmsg = jObj.getString("StatusMessage");
+                        String sessionID = jObj.getString("SessionID");
+                        String resid = jObj.getString("Resource");
+                        String uid = jObj.getString("SessionID");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String name = user.getString("name");
-                        String email = user.getString("email");
-                        String companyidd = user.getString("company_name");
-                        String created_at = user
-                                .getString("created_at");
+//                        JSONObject user = jObj.getJSONObject("user");
+//                        String name = user.getString("username");
+//                        String email = user.getString("email");
+//                        String companyidd = user.getString("company_name");
+//                        String created_at = user
+//                                .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at, companyidd);
+                        db.addUser(mUsernameField.getText().toString(), mPasswordField.getText().toString(), uid);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
@@ -598,7 +571,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         finish();
                     } else {
                         // Error in login. Get the error message
-                        String errorMsg = jObj.getString("error_msg");
+                        Log.d(TAG, "else of login");
+                        String errorMsg = jObj.getString("StatusMessage");
                         Toast.makeText(getApplicationContext(),
                                 errorMsg, Toast.LENGTH_LONG).show();
                     }
@@ -624,9 +598,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
-                params.put("password", password);
-                params.put("companyid", companyid);
+                params.put("Username", username);
+                params.put("Password", password);
+                params.put("api_publickey", "ZKAQS5117DKifEOR@MSMclDf2@17");
+                params.put("api_privatekey", "ZOR@MSMlDf2@17ZKAQS5117DKif#");
+                //params.put("companyid", companyid);
 
                 return params;
             }
@@ -736,18 +712,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public void signOut() {
         mAuth.signOut();
-        updateUI(null);
+
     }
 
     private boolean validateForm() {
         boolean valid = true;
 
-        String email = mEmailField.getText().toString();
+        String email = mUsernameField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmailField.setError("Required.");
+            mUsernameField.setError("Required.");
             valid = false;
         } else {
-            mEmailField.setError(null);
+            mUsernameField.setError(null);
         }
 
         String password = mPasswordField.getText().toString();
@@ -761,40 +737,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return valid;
     }
 
-    private void updateUI(FirebaseUser user) {
 
-//        hideProgressDialog();
-        if (user != null) {
-//            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
-//            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-
-//            findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
-//            findViewById(R.id.email_password_fields).setVisibility(View.GONE);
-//            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
-        } else {
-//            mStatusTextView.setText(R.string.signed_out);
-//            mDetailTextView.setText(null);
-//
-//            findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
-//            findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
-//            findViewById(R.id.sign_out_button).setVisibility(View.GONE);
-        }
-    }
-
-//    @Override
-//    public void onClick(View v) {
-//        int i = v.getId();
-////        if (i == R.id.email_create_account_button) {
-////            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-////        } else
-////
-//        if (i == R.id.email_sign_in_button) {
-//            signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-//        } else if (i == R.id.btn_logout) {
-//            signOut();
-//        }
-//    }
-    //firebase funcitons ends
 
 public FirebaseAuth getmAuth(){
 

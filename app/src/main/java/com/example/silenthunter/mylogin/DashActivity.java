@@ -46,18 +46,18 @@ public class DashActivity extends AppCompatActivity
             logoutUser();
         }//btn_login
 
-        String dashtitle = user.get("company_name").toString();
-        Log.i("asad here",dashtitle);
-        Log.i("asad here",dashtitle);
-        Log.i("asad here",dashtitle);
-        Log.i("asad here",dashtitle);
-        Log.i("asad here",dashtitle);
-        Log.i("asad here",dashtitle);
+//        String dashtitle = user.get("name").toString();
+//        Log.i("asad here",dashtitle);
+//        Log.i("asad here",dashtitle);
+//        Log.i("asad here",dashtitle);
+//        Log.i("asad here",dashtitle);
+//        Log.i("asad here",dashtitle);
+//        Log.i("asad here",dashtitle);
 
 
 
 
-        this.setTitle(dashtitle);
+//        this.setTitle(dashtitle);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +77,8 @@ public class DashActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         TextView txtnavView = (TextView)findViewById(R.id.txtnavemail);
-        String navtxt = user.get("email").toString();
+//        String navtxt = user.get("username").toString();
+        String navtxt = "later";
         View v = navigationView.getHeaderView(0);
         Log.i("asad here",navtxt);
         TextView avatarContainer = (TextView ) v.findViewById(R.id.txtnavemail);
