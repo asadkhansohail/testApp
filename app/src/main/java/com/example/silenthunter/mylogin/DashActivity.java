@@ -77,8 +77,8 @@ public class DashActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         TextView txtnavView = (TextView)findViewById(R.id.txtnavemail);
-//        String navtxt = user.get("username").toString();
-        String navtxt = "later";
+        String navtxt = user.get("username");
+//        String navtxt = "later";
         View v = navigationView.getHeaderView(0);
         Log.i("asad here",navtxt);
         TextView avatarContainer = (TextView ) v.findViewById(R.id.txtnavemail);

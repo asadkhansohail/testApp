@@ -541,6 +541,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     // Check for error node in json
                     Log.d(TAG, errorCode);
                     Log.d(TAG, jObj.getString("StatusMessage"));
+                    Log.d(TAG, jObj.getString("SessionID"));
 //                    Log.d(TAG, errorCode);
                     if (errorCode.equalsIgnoreCase("0x3200") ) {
                         // user successfully logged in
@@ -552,7 +553,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         String stsmsg = jObj.getString("StatusMessage");
                         String sessionID = jObj.getString("SessionID");
                         String resid = jObj.getString("Resource");
-                        String uid = jObj.getString("SessionID");
+                        String uidd = jObj.getString("SessionID");
 
 //                        JSONObject user = jObj.getJSONObject("user");
 //                        String name = user.getString("username");
@@ -562,7 +563,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                                .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(mUsernameField.getText().toString(), mPasswordField.getText().toString(), uid);
+                        Log.i("asad",mPasswordField.getText().toString());
+                        db.addUser(mUsernameField.getText().toString(), mPasswordField.getText().toString(), uidd);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

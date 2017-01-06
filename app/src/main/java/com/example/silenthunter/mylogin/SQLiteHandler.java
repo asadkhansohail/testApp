@@ -31,7 +31,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 //    private static final String KEY_ID = "id";
     private static final String KEY_USERNAME = "name";
     private static final String KEY_PASSWORD = "password";
-    private static final String KEY_UID = "uid";
+    private static final String KEY_UIDD = "uidd";
 //    private static final String KEY_COMPID = "company_name";
 //    private static final String KEY_CREATED_AT = "created_at";
 
@@ -43,7 +43,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_UID + " INTEGER PRIMARY KEY," + KEY_USERNAME + " TEXT,"
+                + KEY_UIDD + " TEXT PRIMARY KEY," + KEY_USERNAME + " TEXT,"
                 + KEY_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -63,7 +63,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String username, String password, String uid) {
+    public void addUser(String username, String password, String uidd) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -71,7 +71,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(KEY_PASSWORD, password); // Email
 //        values.put(KEY_UID, uid); // Email
 //        values.put(KEY_COMPID, company_name); // Company
-        values.put(KEY_UID, uid); // Created At
+        values.put(KEY_UIDD, uidd); // Created At
 
         // Inserting Row
         long id = db.insert(TABLE_USER, null, values);
@@ -92,9 +92,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         // Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
+            user.put("uidd", cursor.getString(0));
             user.put("username", cursor.getString(1));
             user.put("password", cursor.getString(2));
-            user.put("uid", cursor.getString(3));
 //            user.put("created_at", cursor.getString(4));
 //            user.put("company_name", cursor.getString(5));
         }
