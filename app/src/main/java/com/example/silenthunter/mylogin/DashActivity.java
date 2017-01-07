@@ -1,5 +1,6 @@
 package com.example.silenthunter.mylogin;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,14 +18,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.silenthunter.mylogin.zorkifCharts.chartsActivity;
+import com.example.silenthunter.mylogin.zorkifCharts.fragments.PieChartFrag;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
 public class DashActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    Fragment fragment = null;
     private SQLiteHandler db;
     private SessionManager session;
     private FirebaseAuth mAuthD;
@@ -125,16 +128,28 @@ public class DashActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Fragment fragment = null;
+
         int id = item.getItemId();
 
         if (id == R.id.nav_stats) {
-            fragment = new chartsActivity();
+//            fragment = new chartsActivity();
+            fragment = new PieChartFrag();
             // Handle the camera action
 //            Intent intent = new Intent(DashActivity.this, statisticsActivity.class);
 //            startActivity(intent);
 
         } else if (id == R.id.nav_gallery) {
+//            Fragment fragmentthis = new Fragment();
+//             getFragmentManager().findFragmentById(R.id.pieChart1);
+
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.detach(fragment);
+
+            ft.commit();
+            Log.i("asad", "pi chart closing fragment");
+            Toast.makeText(getApplicationContext(),
+                    "Under construction!", Toast.LENGTH_LONG)
+                    .show();
 
         } else if (id == R.id.nav_slideshow) {
 
