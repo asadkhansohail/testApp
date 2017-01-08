@@ -37,13 +37,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.WHITE;
 import static com.example.silenthunter.mylogin.AppConfig.URL_JOB_STATUS;
 
 //import com.xxmassdeveloper.mpchartexample.R;
 
 public class PieChartFrag extends SimpleFragment {
 
-    public static PieChart mChart;
+    public PieChart mChart;
     public ArrayList<PieEntry> entriestwo = new ArrayList<PieEntry>();
     protected PieData pieresponse;
     private Typeface tf;
@@ -68,30 +70,35 @@ public class PieChartFrag extends SimpleFragment {
         
         mChart.setCenterTextTypeface(tf);
         mChart.setCenterText(generateCenterText());
-        mChart.setCenterTextSize(10f);
+        mChart.setCenterTextSize(7f);//10f
         mChart.setCenterTextTypeface(tf);
-         
+        mChart.setBackgroundColor(WHITE);
         // radius of the center hole in percent of maximum radius
-        mChart.setHoleRadius(45f);
-        mChart.setTransparentCircleRadius(50f);
+        mChart.setHoleRadius(20f);//45
+        mChart.setTransparentCircleRadius(30f);//50
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setDrawInside(false);
+
+
+//        callvolley(URL_JOB_STATUS);
+
+
 //        callvolley(URL_JOB_STATUS);
 
 
         callvolley(URL_JOB_STATUS);
-//        mChart.setData(generatePieDataone(entriestwo));
-
-
+        mChart.animateX(1500);
+//        mChart.startLayoutAnimation();
         return v;
     }
 
     private SpannableString generateCenterText() {
         SpannableString s = new SpannableString("Zorkif One");
+
         s.setSpan(new RelativeSizeSpan(2f), 0, 8, 0);
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 8, s.length(), 0);
         return s;
@@ -104,7 +111,7 @@ public class PieChartFrag extends SimpleFragment {
         final HashMap<String, String> user = db.getUserDetails();
         // session manager
         session = new SessionManager(getActivity().getApplicationContext());
-
+//          PieData dd =new PieData ();
 
         //changs for volley
         RequestQueue rq = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -128,23 +135,27 @@ public class PieChartFrag extends SimpleFragment {
                             countjasonobj = rjarry.length();
                             JSONObject rjsonobj;
                             for (int x = 0; x < countjasonobj; x++) {
-                                rjsonobj = rjarry.getJSONObject(0);
+                                rjsonobj = rjarry.getJSONObject(x);
                                 int valstatus = Integer.parseInt(rjsonobj.getString("NoOfStatus"));
                                 entriesjason.add(new PieEntry(valstatus, rjsonobj.getString("Status")));
-
+//                                mChart.setData(generatePieDataone(entriestwo));
 
                             }
+
                             PieDataSet ds1 = new PieDataSet(entriesjason, "Zorkif One 2016");
-                            ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+                            ds1.setColors(ColorTemplate.JOYFUL_COLORS);
                             ds1.setSliceSpace(2f);
-                            ds1.setValueTextColor(Color.WHITE);
+                            ds1.setValueTextColor(WHITE);
                             ds1.setValueTextSize(12f);
 
                             PieData d = new PieData(ds1);
                             d.setValueTypeface(tf);
-                            pieresponse = d;
+//                            pieresponse = d;
+//
                             mChart.setData(d);
-                            mChart.animate();
+//                            mChart.setHoleColor(GREEN);
+
+//                            mChart.animate();
 //                            JSONObject c=b.getJSONObject(0);
 //                            String d= c.getString("Status");
 //                            Log.d("asad", d);
@@ -181,6 +192,8 @@ public class PieChartFrag extends SimpleFragment {
 
     protected PieData generatePieDataone(ArrayList<PieEntry> entries1) {
 
+//        callvolley(URL_JOB_STATUS);
+
 //        int count = 4;
 
 //        ArrayList<PieEntry> entries1 = new ArrayList<PieEntry>();
@@ -190,9 +203,9 @@ public class PieChartFrag extends SimpleFragment {
 //        }
 
         PieDataSet ds1 = new PieDataSet(entries1, "Zorkif One 2016");
-        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ds1.setColors(ColorTemplate.JOYFUL_COLORS); //.VORDIPLOM_COLORS
         ds1.setSliceSpace(2f);
-        ds1.setValueTextColor(Color.WHITE);
+        ds1.setValueTextColor(BLACK);
         ds1.setValueTextSize(12f);
 
         PieData d = new PieData(ds1);

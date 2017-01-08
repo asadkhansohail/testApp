@@ -143,7 +143,8 @@ public class DashActivity extends AppCompatActivity
 //             getFragmentManager().findFragmentById(R.id.pieChart1);
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.detach(fragment);
+            ft.hide(fragment);
+//                    detach(fragment);
 
             ft.commit();
             Log.i("asad", "pi chart closing fragment");
