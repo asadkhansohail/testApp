@@ -134,6 +134,7 @@ public class DashActivity extends AppCompatActivity
         if (id == R.id.nav_stats) {
 //            fragment = new chartsActivity();
             fragment = new PieChartFrag();
+//            fragment = new BarChartFrag();
             // Handle the camera action
 //            Intent intent = new Intent(DashActivity.this, statisticsActivity.class);
 //            startActivity(intent);

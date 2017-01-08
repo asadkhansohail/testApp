@@ -1,4 +1,5 @@
 package com.example.silenthunter.mylogin.zorkifCharts.fragments;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,29 +10,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.silenthunter.mylogin.R;
+import com.example.silenthunter.mylogin.zorkifCharts.custom.MyMarkerView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
+
 //import com.xxmassdeveloper.mpchartexample.R;
-import com.example.silenthunter.mylogin.R;
 //import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
-import com.example.silenthunter.mylogin.zorkifCharts.custom.MyMarkerView;
 
 public class BarChartFrag extends SimpleFragment implements OnChartGestureListener {
+
+    private BarChart mChart;
 
     public static Fragment newInstance() {
         return new BarChartFrag();
     }
-
-    private BarChart mChart;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        View v = inflater.inflate(R.layout.frag_simple_bar, container, false);
         View v = inflater.inflate(R.layout.frag_simple_bar, container, false);
-        
+//        mChart = (BarChart) v.findViewById(R.id.pieChart2);
         // create a new chart object
         mChart = new BarChart(getActivity());
         mChart.getDescription().setEnabled(false);
