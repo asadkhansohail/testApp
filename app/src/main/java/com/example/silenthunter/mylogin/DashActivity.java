@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.silenthunter.mylogin.zorkifCharts.fragments.PieChartFrag;
+import com.example.silenthunter.mylogin.zorkifCharts.fragments.PieChartFrag_finance;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
@@ -28,9 +29,12 @@ import java.util.HashMap;
 public class DashActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Fragment fragment = null;
+    int nav_stat_flag = 0;
+    boolean frag_pie_chart_one_flag = false;
     private SQLiteHandler db;
     private SessionManager session;
     private FirebaseAuth mAuthD;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -130,19 +134,30 @@ public class DashActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
 
         int id = item.getItemId();
-
+        NavigationView menuNav = (NavigationView) findViewById(R.id.nav_view);
         if (id == R.id.nav_stats) {
+
+
+            if (nav_stat_flag == 0) {
 //            fragment = new chartsActivity();
 //            fragment = new PieChartFrag();
-            NavigationView menuNav = (NavigationView) findViewById(R.id.nav_view);
+
 //            Menu    amenu = menuNav.getMenu();
 //               menuNav.getMenu().addSubMenu(0, Menu.FIRST, 1, "Form 1").getItem().setIcon(R.drawable.ic_menu_camera).setEnabled(true).setVisible(true);
-            menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(true);
-            menuNav.getMenu().findItem(R.id.nav_stat_finance).setVisible(true);
+                menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(true);
+                menuNav.getMenu().findItem(R.id.nav_stat_finance).setVisible(true);
 //                menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(true);
 
+                nav_stat_flag = 1;
+                Log.i("asad", "asad");
+            } else {
 
-            Log.i("asad", "asad");
+                menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(false);
+                menuNav.getMenu().findItem(R.id.nav_stat_finance).setVisible(false);
+                nav_stat_flag = 0;
+
+
+            }
 //            fragment = new BarChartFrag();
             // Handle the camera action
 //            Intent intent = new Intent(DashActivity.this, statisticsActivity.class);
@@ -150,21 +165,35 @@ public class DashActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_stats_overview) {
             fragment = new PieChartFrag();
+            frag_pie_chart_one_flag = true;
+        } else if (id == R.id.nav_stat_finance) {
+
+            fragment = new PieChartFrag_finance();
         } else if (id == R.id.nav_gallery) {
 //            Fragment fragmentthis = new Fragment();
 //             getFragmentManager().findFragmentById(R.id.pieChart1);
-
+            if (nav_stat_flag == 1) {
+                menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(false);
+                menuNav.getMenu().findItem(R.id.nav_stat_finance).setVisible(false);
+                nav_stat_flag = 0;
+            }
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            Fragment topFragment = fragmentManager.findFragmentById(R.id.frag_simple_pie_id);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.hide(fragment);
+            if (frag_pie_chart_one_flag == true) {
+                ft.hide(fragment);
 //                    detach(fragment);
 
-            ft.commit();
+                ft.commit();
+            }
+
             Log.i("asad", "pi chart closing fragment");
             Toast.makeText(getApplicationContext(),
                     "Under construction!", Toast.LENGTH_LONG)
                     .show();
 
         } else if (id == R.id.nav_slideshow) {
+
 
         } else if (id == R.id.nav_manage) {
 

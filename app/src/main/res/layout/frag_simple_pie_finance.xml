@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/frag_simple_pie_id"
+    android:id="@+id/frag_simple_pie_finance_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -14,14 +14,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart1"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart_finance"
                 android:layout_width="match_parent"
                 android:layout_height="399dp"
                 android:background="@android:color/background_light" />
 
             <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/pieChart2"
+                android:id="@+id/barCharttwo_finance"
                 android:layout_width="match_parent"
                 android:layout_height="399dp"
                 android:background="@android:color/background_light" />
