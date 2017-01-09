@@ -117,7 +117,7 @@ public class DashActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.btn_logout) {
             logoutUser();
-            FirebaseAuth.getInstance().signOut();
+//            FirebaseAuth.getInstance().signOut();
             return true;
         }
 
@@ -133,12 +133,23 @@ public class DashActivity extends AppCompatActivity
 
         if (id == R.id.nav_stats) {
 //            fragment = new chartsActivity();
-            fragment = new PieChartFrag();
+//            fragment = new PieChartFrag();
+            NavigationView menuNav = (NavigationView) findViewById(R.id.nav_view);
+//            Menu    amenu = menuNav.getMenu();
+//               menuNav.getMenu().addSubMenu(0, Menu.FIRST, 1, "Form 1").getItem().setIcon(R.drawable.ic_menu_camera).setEnabled(true).setVisible(true);
+            menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(true);
+            menuNav.getMenu().findItem(R.id.nav_stat_finance).setVisible(true);
+//                menuNav.getMenu().findItem(R.id.nav_stats_overview).setVisible(true);
+
+
+            Log.i("asad", "asad");
 //            fragment = new BarChartFrag();
             // Handle the camera action
 //            Intent intent = new Intent(DashActivity.this, statisticsActivity.class);
 //            startActivity(intent);
 
+        } else if (id == R.id.nav_stats_overview) {
+            fragment = new PieChartFrag();
         } else if (id == R.id.nav_gallery) {
 //            Fragment fragmentthis = new Fragment();
 //             getFragmentManager().findFragmentById(R.id.pieChart1);
@@ -168,8 +179,15 @@ public class DashActivity extends AppCompatActivity
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (id == R.id.nav_stats) {
+//
+//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//            drawer.closeDrawer(GravityCompat.START);
+
+        } else {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
 
