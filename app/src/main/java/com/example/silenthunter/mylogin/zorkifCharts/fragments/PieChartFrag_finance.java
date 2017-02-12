@@ -107,36 +107,12 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
 
         XAxis xAxis = cChart.getXAxis();
         xAxis.setEnabled(false);
-
-        // programatically add the chart
         cChart.animateX(1000);
 
 
-//        mChart = (PieChart) v.findViewById(R.id.pieChart1);
-//
-//        mChart.getDescription().setEnabled(false);
-
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
 
-//        mChart.setCenterTextTypeface(tf);
-//        mChart.setCenterText(generateCenterText());
-//        mChart.setCenterTextSize(7f);//10f
-//        mChart.setCenterTextTypeface(tf);
-//        mChart.setBackgroundColor(WHITE);
-//        // radius of the center hole in percent of maximum radius
-//        mChart.setHoleRadius(20f);//45
-//        mChart.setTransparentCircleRadius(30f);//50
-//
-//        Legend l = mChart.getLegend();
-//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-//        l.setDrawInside(false);
-//        callvolley(URL_JOB_STATUS);
-////        callvolleybar(URL_JOB_BAR_CHARTS);
-//        mChart.animateX(1500);
 
-        // create a new chart object
         bChart = (BarChart) v.findViewById(R.id.barCharttwo_finance);
 //        bChart = new BarChart(getActivity());
 //        bChart = (BarChart) v.findViewById(R.id.pieChart2);
@@ -233,15 +209,6 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
 
 //                        try {
                         String a = response.toString();
-
-//                            ArrayList<PieEntry> entriesjason = new ArrayList<PieEntry>();
-//                            JSONArray rjarry = new JSONArray(a);
-
-//                            countjasonobj = rjarry.length();
-//                            JSONObject rjsonobj = rjarry.getJSONObject(0);
-//
-//                            JSONObject rjsonobja= new JSONObject(response);
-
                         int strlen = a.length();
                         int vJAN = 0;
                         int vFEB = 0;
@@ -255,20 +222,35 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
                         int vOCT = 0;
                         int vNOV = 0;
                         int vDEC = 0;
-                        if (a.length() >= 11) {
+                        if (a.length() == 25) {
+                            Log.i("asad in loop", String.valueOf(a.length()));
                             Log.i("asad in loop", a.substring(1, 2));
+                            Log.i("asad in loop", a.substring(2, 2));
+                            Log.i("asad in loop", a.substring(2, 3));
+                            Log.i("asad in loop", a.substring(3, 4));
+                            Log.i("asad in loop", a.substring(5, 6));
+                            Log.i("asad in loop", a.substring(7, 8));
+                            Log.i("asad in loop", a.substring(9, 10));
+                            Log.i("asad in loop", a.substring(11, 12));
+                            Log.i("asad in loop", a.substring(13, 14));
+                            Log.i("asad in loop", a.substring(15, 16));
+                            Log.i("asad in loop", a.substring(17, 18));
+                            Log.i("asad in loop", a.substring(19, 20));
+                            Log.i("asad in loop", a.substring(21, 22));
+                            Log.i("asad in loop", a.substring(23, 24));
+
                             vJAN = Integer.parseInt(a.substring(1, 2));
                             vFEB = Integer.parseInt(a.substring(3, 4));
                             vMAR = Integer.parseInt(a.substring(5, 6));
                             vAPR = Integer.parseInt(a.substring(7, 8));
                             vMAY = Integer.parseInt(a.substring(9, 10));
-                            vJUN = Integer.parseInt(a.substring(1, 2));
-                            vJUL = Integer.parseInt(a.substring(1, 2));
-                            vAUG = Integer.parseInt(a.substring(1, 2));
-                            vSEP = Integer.parseInt(a.substring(1, 2));
-                            vOCT = Integer.parseInt(a.substring(1, 2));
-                            vNOV = Integer.parseInt(a.substring(1, 2));
-                            vDEC = Integer.parseInt(a.substring(1, 2));
+                            vJUN = Integer.parseInt(a.substring(11, 12));
+                            vJUL = Integer.parseInt(a.substring(13, 14));
+                            vAUG = Integer.parseInt(a.substring(15, 16));
+                            vSEP = Integer.parseInt(a.substring(17, 18));
+                            vOCT = Integer.parseInt(a.substring(19, 20));
+                            vNOV = Integer.parseInt(a.substring(21, 22));
+                            vDEC = Integer.parseInt(a.substring(23, 24));
 //                                mChart.setData(generatePieDataone(entriestwo));
                         }
 
@@ -318,7 +300,20 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
                             ds = new BarDataSet(entries, "SEP");
                             ds.setColor(LTGRAY);
                             sets.add(ds);
+                            entries.add(new BarEntry(8, vOCT));
+                            ds = new BarDataSet(entries, "OCT");
+                            ds.setColor(GRAY);
+                            sets.add(ds);
+                            entries.add(new BarEntry(8, vNOV));
+                            ds = new BarDataSet(entries, "NOV");
+                            ds.setColor(LTGRAY);
+                            sets.add(ds);
+                            entries.add(new BarEntry(8, vDEC));
+                            ds = new BarDataSet(entries, "DEC");
+                            ds.setColor(MAGENTA);
+                            sets.add(ds);
                             ds.setColors(ColorTemplate.COLORFUL_COLORS);
+
 
 
 //                ds.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -388,13 +383,6 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
 //                        try {
                         String a = response.toString();
 
-//                            ArrayList<PieEntry> entriesjason = new ArrayList<PieEntry>();
-//                            JSONArray rjarry = new JSONArray(a);
-
-//                            countjasonobj = rjarry.length();
-//                            JSONObject rjsonobj = rjarry.getJSONObject(0);
-//
-//                            JSONObject rjsonobja= new JSONObject(response);
 
                         int strlen = a.length();
                         int vJAN = 0;
@@ -409,20 +397,35 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
                         int vOCT = 0;
                         int vNOV = 0;
                         int vDEC = 0;
-                        if (a.length() >= 11) {
+                        if (a.length() == 25) {
+                            Log.i("asad in loop", String.valueOf(a.length()));
                             Log.i("asad in loop", a.substring(1, 2));
+                            Log.i("asad in loop", a.substring(2, 2));
+                            Log.i("asad in loop", a.substring(2, 3));
+                            Log.i("asad in loop", a.substring(3, 4));
+                            Log.i("asad in loop", a.substring(5, 6));
+                            Log.i("asad in loop", a.substring(7, 8));
+                            Log.i("asad in loop", a.substring(9, 10));
+                            Log.i("asad in loop", a.substring(11, 12));
+                            Log.i("asad in loop", a.substring(13, 14));
+                            Log.i("asad in loop", a.substring(15, 16));
+                            Log.i("asad in loop", a.substring(17, 18));
+                            Log.i("asad in loop", a.substring(19, 20));
+                            Log.i("asad in loop", a.substring(21, 22));
+                            Log.i("asad in loop", a.substring(23, 24));
+
                             vJAN = Integer.parseInt(a.substring(1, 2));
                             vFEB = Integer.parseInt(a.substring(3, 4));
                             vMAR = Integer.parseInt(a.substring(5, 6));
                             vAPR = Integer.parseInt(a.substring(7, 8));
                             vMAY = Integer.parseInt(a.substring(9, 10));
-                            vJUN = Integer.parseInt(a.substring(1, 2));
-                            vJUL = Integer.parseInt(a.substring(1, 2));
-                            vAUG = Integer.parseInt(a.substring(1, 2));
-                            vSEP = Integer.parseInt(a.substring(1, 2));
-                            vOCT = Integer.parseInt(a.substring(1, 2));
-                            vNOV = Integer.parseInt(a.substring(1, 2));
-                            vDEC = Integer.parseInt(a.substring(1, 2));
+                            vJUN = Integer.parseInt(a.substring(11, 12));
+                            vJUL = Integer.parseInt(a.substring(13, 14));
+                            vAUG = Integer.parseInt(a.substring(15, 16));
+                            vSEP = Integer.parseInt(a.substring(17, 18));
+                            vOCT = Integer.parseInt(a.substring(19, 20));
+                            vNOV = Integer.parseInt(a.substring(21, 22));
+                            vDEC = Integer.parseInt(a.substring(23, 24));
 //                                mChart.setData(generatePieDataone(entriestwo));
                         }
 
@@ -472,6 +475,18 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
                             ds = new BarDataSet(entries, "SEP");
                             ds.setColor(LTGRAY);
                             sets.add(ds);
+                            entries.add(new BarEntry(8, vOCT));
+                            ds = new BarDataSet(entries, "OCT");
+                            ds.setColor(GREEN);
+                            sets.add(ds);
+                            entries.add(new BarEntry(8, vNOV));
+                            ds = new BarDataSet(entries, "NOV");
+                            ds.setColor(MAGENTA);
+                            sets.add(ds);
+                            entries.add(new BarEntry(8, vDEC));
+                            ds = new BarDataSet(entries, "DEC");
+                            ds.setColor(LTGRAY);
+                            sets.add(ds);
                             ds.setColors(ColorTemplate.COLORFUL_COLORS);
 
 
@@ -486,6 +501,7 @@ public class PieChartFrag_finance extends SimpleFragment implements OnChartGestu
                         BarData d = new BarData(sets);
                         d.setValueTypeface(tf);
                         bChart.setData(d);
+
                         bChart.animateX(1500);
                         Log.i("asad", "end of bar chart functions");
 //                            PieDataSet ds1 = new PieDataSet(entriesjason, "Zorkif One 2016");

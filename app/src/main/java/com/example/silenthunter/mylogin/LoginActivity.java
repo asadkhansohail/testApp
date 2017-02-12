@@ -44,7 +44,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,42 +62,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     //from tutu
     private static final String TAG = LoginActivity.class.getSimpleName();
-
-    private ProgressDialog pDialog;
-    private SessionManager session;
-    private SQLiteHandler db;
-   // private  AppController appcont;
-    ///from tutu ends
-   // DashActivity  calldash = new DashActivity();
-
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
-
-    // UI references.
-    private AutoCompleteTextView mUsername;
-    private EditText mPasswordView;
-    private EditText mCompanyidView;
-    private View mProgressView;
-    private View mLoginFormView;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     //firebase vars
     private static final String TAGt = "EmailPassword";
+    private ProgressDialog pDialog;
+   // private  AppController appcont;
+    ///from tutu ends
+   // DashActivity  calldash = new DashActivity();
+   private SessionManager session;
 
+    /**
+     * A dummy authentication store containing known user names and passwords.
+     * TODO: remove after connecting to a real authentication system.
+     */
+    private SQLiteHandler db;
+    /**
+     * Keep track of the login task to ensure we can cancel it if requested.
+     */
+    private UserLoginTask mAuthTask = null;
+    // UI references.
+    private AutoCompleteTextView mUsername;
+    private EditText mPasswordView;
+    private EditText mCompanyidView;
+    private View mProgressView;
+    private View mLoginFormView;
 //    private TextView mStatusTextView;
 //    private TextView mDetailTextView;
     private EditText mUsernameField;
@@ -130,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mCompanyidView = (EditText) findViewById(R.id.companyid);
         mUsername = (AutoCompleteTextView) findViewById(R.id.username);
-        populateAutoComplete();
+//        populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
 
@@ -242,7 +236,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
         if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mUsername, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
@@ -438,83 +431,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-//     */
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mUser;
-        private final String mPassword;
-        private final String mCompanyid;
-
-        UserLoginTask(String user, String password, String companyid) {
-            mUser = user;
-            mPassword = password;
-            mCompanyid=companyid;
-
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                checkLogin(mUser, mPassword,mCompanyid);
-//                Intent myIntent = new Intent(LoginActivity.this, DashActivity.class);
-//                LoginActivity.this.finish();
-//                LoginActivity.this.startActivity(myIntent);
-               // finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
-
-
-
-
-
-    /**
      * Tutu function to verify login details in mysql db
      * */
     private void checkLogin(final String username, final String password, final String companyid) {
@@ -626,15 +542,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             pDialog.dismiss();
     }
 
-    //firebase functions sgtarts
-
     // [START on_start_add_listener]
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
-    // [END on_start_add_listener]
 
     // [START on_stop_remove_listener]
     @Override
@@ -644,7 +557,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-    // [END on_stop_remove_listener]
+
+    //firebase functions sgtarts
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
@@ -676,6 +590,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 });
         // [END create_user_with_email]
     }
+    // [END on_start_add_listener]
 
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
@@ -712,6 +627,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 });
         // [END sign_in_with_email]
     }
+    // [END on_stop_remove_listener]
 
     public void signOut() {
         mAuth.signOut();
@@ -740,13 +656,84 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return valid;
     }
 
-
-
 public FirebaseAuth getmAuth(){
 
 
     return mAuth;
 }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     * //
+     */
+
+    private interface ProfileQuery {
+        String[] PROJECTION = {
+                ContactsContract.CommonDataKinds.Email.ADDRESS,
+                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
+        };
+
+        int ADDRESS = 0;
+        int IS_PRIMARY = 1;
+    }
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String mUser;
+        private final String mPassword;
+        private final String mCompanyid;
+
+        UserLoginTask(String user, String password, String companyid) {
+            mUser = user;
+            mPassword = password;
+            mCompanyid = companyid;
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            try {
+                // Simulate network access.
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                return false;
+            }
+
+
+            // TODO: register the new account here.
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            showProgress(false);
+
+            if (success) {
+                checkLogin(mUser, mPassword, mCompanyid);
+//                Intent myIntent = new Intent(LoginActivity.this, DashActivity.class);
+//                LoginActivity.this.finish();
+//                LoginActivity.this.startActivity(myIntent);
+                // finish();
+            } else {
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.requestFocus();
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+            showProgress(false);
+        }
+    }
 
 }
 

@@ -2,10 +2,10 @@ package com.example.silenthunter.mylogin;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -20,14 +20,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.silenthunter.mylogin.zorkifCharts.BasicNotificationActivity;
 import com.example.silenthunter.mylogin.zorkifCharts.fragments.PieChartFrag;
 import com.example.silenthunter.mylogin.zorkifCharts.fragments.PieChartFrag_finance;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
+import layout.far_notification;
+
+//import com.example.silenthunter.mylogin.zorkifCharts.NotificaitonActivity;
+
 public class DashActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, far_notification.OnFragmentInteractionListener {
     Fragment fragment = null;
     int nav_stat_flag = 0;
     boolean frag_pie_chart_one_flag = false;
@@ -70,8 +75,23 @@ public class DashActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                fragment = new far_notification();
+                Log.i("asad", "asad");
+
+//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+//                ft.replace(R.id.content_frame, fragment);
+
+//                ft.attach(fragment);
+//                ft.show(fragment);
+                Intent intent = new Intent(DashActivity.this,
+                        BasicNotificationActivity.class);
+                startActivity(intent);
+//                ft.commit();
+//
+
             }
         });
 
@@ -80,6 +100,7 @@ public class DashActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
+        drawer.setBackgroundColor(12897152);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -244,6 +265,12 @@ public class DashActivity extends AppCompatActivity
 
 
         return sid;
+    }
+
+
+    public void onFragmentInteraction(Uri uri) {
+
+
     }
 
 }

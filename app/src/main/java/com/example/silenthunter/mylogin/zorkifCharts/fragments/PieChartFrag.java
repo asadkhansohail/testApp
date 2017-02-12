@@ -91,12 +91,12 @@ public class PieChartFrag extends SimpleFragment implements OnChartGestureListen
         
         mChart.setCenterTextTypeface(tf);
         mChart.setCenterText(generateCenterText());
-        mChart.setCenterTextSize(7f);//10f
+        mChart.setCenterTextSize(10f);//10f
         mChart.setCenterTextTypeface(tf);
         mChart.setBackgroundColor(WHITE);
         // radius of the center hole in percent of maximum radius
-        mChart.setHoleRadius(20f);//45
-        mChart.setTransparentCircleRadius(30f);//50
+        mChart.setHoleRadius(45f);//45
+        mChart.setTransparentCircleRadius(50f);//50
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -224,7 +224,7 @@ public class PieChartFrag extends SimpleFragment implements OnChartGestureListen
                             }
 
                             PieDataSet ds1 = new PieDataSet(entriesjason, "Zorkif One 2016");
-                            ds1.setColors(ColorTemplate.JOYFUL_COLORS);
+                            ds1.setColors(ColorTemplate.COLORFUL_COLORS);
                             ds1.setSliceSpace(2f);
                             ds1.setValueTextColor(WHITE);
                             ds1.setValueTextSize(12f);
