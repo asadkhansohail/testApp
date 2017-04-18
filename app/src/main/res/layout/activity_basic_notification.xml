@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.silenthunter.mylogin.zorkifCharts.BasicNotificationActivity">
 
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,10 +18,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorControlActivated"
             app:popupTheme="@style/PopupOverlay" />
 
         <include
+            android:id="@+id/recyclerview"
             layout="@layout/notificationrecyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

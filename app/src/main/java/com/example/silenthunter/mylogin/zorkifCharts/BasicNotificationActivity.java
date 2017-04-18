@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.silenthunter.mylogin.R;
 import com.example.silenthunter.mylogin.SQLiteHandler;
 import com.example.silenthunter.mylogin.SessionManager;
+import com.example.silenthunter.mylogin.zorkifCharts.listviewitems.notificationAdopter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,10 +35,14 @@ import static com.example.silenthunter.mylogin.AppConfig.URL_NOTIFICATION;
 
 public class BasicNotificationActivity extends AppCompatActivity {
 
+    public String[] myDataset = {"asadSK"};
     private SQLiteHandler db;
     private SessionManager session;
     private int countjasonobj;
     private String jason;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,10 @@ public class BasicNotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basic_notification);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +63,29 @@ public class BasicNotificationActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        //notifcaiton view
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new notificationAdopter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
+        //notificaiton view
+
+
+
+
+
 
         callvolleybar(URL_NOTIFICATION);
     }
@@ -76,7 +112,7 @@ public class BasicNotificationActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Do something with the response
-                        Log.d("Basic Notificatin Unit", " Response for bar: " + response.toString());
+                        Log.d("Basic Notificatin Unit", " Response for notifications: " + response.toString());
 
 
                         try {
@@ -144,4 +180,17 @@ public class BasicNotificationActivity extends AppCompatActivity {
         //volley changes ends
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(getApplicationContext(), "Loading Dashboard.....", Toast.LENGTH_SHORT).show();
+                finish();
+
+                break;
+        }
+        return true;
+    }
+
 }
