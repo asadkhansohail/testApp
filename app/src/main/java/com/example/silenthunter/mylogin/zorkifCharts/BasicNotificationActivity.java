@@ -35,7 +35,7 @@ import static com.example.silenthunter.mylogin.AppConfig.URL_NOTIFICATION;
 
 public class BasicNotificationActivity extends AppCompatActivity {
 
-    public String[] myDataset = {"asadSK"};
+    public String[] myDataset = {"asadSK", "Sohail SK"};
     private SQLiteHandler db;
     private SessionManager session;
     private int countjasonobj;
